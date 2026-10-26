@@ -1,0 +1,25 @@
+name: LR7 screenshots
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+concurrency:
+  group: shots
+  cancel-in-progress: true
+permissions:
+  contents: write
+jobs:
+  shots:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Playwright
+        run: npm i playwright@1.48.2 && npx playwright install --with-deps chromium
+      - name: Take screenshots
+        run: node shot.js
+      - name: Save screenshots to branch "screens"
+        run: |
+          git config user.name "Bohdan Lypovetskyi"; git config user.email "lipoveeet@users.noreply.github.com"
+          mkdir -p /tmp/s && cp *.png /tmp/s/
+          git checkout --orphan screens; git rm -rfq .; rm -rf node_modules
+          cp /tmp/s/*.png . ; git add *.png; git commit -qm "Screenshots (run ${{ github.run_number }})"; git push -f origin screens
