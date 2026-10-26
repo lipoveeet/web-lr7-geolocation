@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wherever you go, there you are</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="myLoc.css">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="myLoc.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Geolocation API</h1>
+    <p>Лабораторна робота №7 · Липовецький Богдан, ПІ-23-03</p>
+  </header>
+  <main>
+    <section>
+      <h2>Моє місцезнаходження</h2>
+      <form>
+        <input type="button" id="watch" value="Watch me">
+        <input type="button" id="clearWatch" value="Clear watch">
+      </form>
+      <div id="location">Your location will go here.</div>
+      <div id="distance">Distance from College will go here.</div>
+      <div id="accuracy"></div>
+    </section>
+
+    <section>
+      <h2>Карта (індивідуальне завдання)</h2>
+      <div class="destination">
+        <label>Широта <input type="number" id="destLat" step="any" value="50.4473"></label>
+        <label>Довгота <input type="number" id="destLng" step="any" value="30.5370"></label>
+        <button type="button" id="goToDest">Показати пункт призначення</button>
+        <button type="button" id="goToMe">До мене</button>
+      </div>
+      <div id="destInfo"></div>
+      <div id="map"></div>
+    </section>
+  </main>
+</body>
+</html>
